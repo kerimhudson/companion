@@ -42,7 +42,7 @@ const ColorCard = ({ id, color, locked, luminance, index }: Props) => {
   const isDark = luminance <= 0.5;
   return (
     <div
-      className="flex-1 basis-64 rounded-lg relative bg-gradient-to-t from-black/10 to-transparent"
+      className="flex-1 basis-32 rounded-lg relative bg-gradient-to-t from-black/10 to-transparent"
       ref={setNodeRef}
       style={style}
       {...attributes}
@@ -50,11 +50,11 @@ const ColorCard = ({ id, color, locked, luminance, index }: Props) => {
       <div
         {...listeners}
         className={classNames([
-          "absolute left-1/2 -translate-x-1/2 px-8 rounded-b-xl",
+          "absolute left-0 top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0 lg:left-1/2 lg:-translate-x-1/2 py-8 lg:py-0 lg:px-8 rounded-r-xl lg:rounded-r-none lg:rounded-b-xl",
           isDark ? "text-white bg-white/10" : "bg-black/10",
         ])}
       >
-        <div className="w-6">
+        <div className="w-4 h-4 rotate-90 lg:rotate-0">
           <DotsHorizontalIcon />
         </div>
       </div>
@@ -63,13 +63,13 @@ const ColorCard = ({ id, color, locked, luminance, index }: Props) => {
         <button
           onClick={editColor}
           className={classNames([
-            "py-4 px-8 rounded-xl",
+            "py-2 px-4 lg:py-4 lg:px-8 rounded-xl",
             isDark
               ? "bg-white/10 text-white hover:bg-white/20"
               : "bg-black/10 hover:bg-black/20",
           ])}
         >
-          <span className="uppercase font-semibold text-xl">{color}</span>
+          <span className="uppercase font-semibold lg:text-xl">{color}</span>
         </button>
         <div className="flex gap-4">
           <RoundButton isDark={isDark} onClick={editColor}>
