@@ -18,16 +18,17 @@ import ColorCard from "./ColorCard";
 import useColors from "../hooks/useColors";
 import ColorPickerModal from "./ColorPickerModal";
 import { Color } from "../types/colors";
+import { useRouter } from "next/router";
 
 const ColorContainer = () => {
   const [activeItem, setActiveItem] = useState<
     (Color & { index: number }) | null
   >(null);
   const { colors, initializeColors, setColors } = useColors();
-
+  const router = useRouter();
   useEffect(() => {
     initializeColors();
-  }, []);
+  }, [router]);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -73,6 +74,11 @@ const ColorContainer = () => {
             ))}
           </div>
         </SortableContext>
+        <DragOverlay>
+          {activeItem ? (
+            <ColorCard key={activeItem.color} {...activeItem} />
+          ) : null}
+        </DragOverlay>
       </DndContext>
     </>
   );
