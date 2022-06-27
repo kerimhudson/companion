@@ -4,6 +4,12 @@ This project was built using Next.js, TailwindCSS, and DND-Kit.
 
 I chose to use TailwindCSS for styling simply because it's what I find the fastest to work with for styling, especially considering the time sensitivity of this project. Next.js is just a really easy boilerplate for working with React, especially with Typescript as a lot of the typing hassles have been configured for you. I used DND-Kit which was a new library for me. I had used react-beautiful-dnd in the passed and often leant on it because of it being produced by Atlassian, however I'm not a fan of it requiring strict mode off on latest versions of React - as it can lead to unexpected behaviour.
 
+## How to run
+
+1. Clone the repo down
+2. Install packages using yarn (ideally) `yarn install`
+3. Run `yarn dev` to start the local development server
+
 ## Functionality
 
 The app can allow you to edit a single colour, lock as many colours as you want when randomising, and move colours around. You can click the share button to generate a shareable URL to share your colour palette with someone you know. You can click the shuffle button to shuffle the colours, or shake on mobile (tested only on iOS in Safari).
