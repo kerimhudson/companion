@@ -50,7 +50,7 @@ const ColorCard = ({ id, color, locked, luminance, index }: Props) => {
       <div
         {...listeners}
         className={classNames([
-          "absolute left-0 top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0 lg:left-1/2 lg:-translate-x-1/2 py-8 lg:py-0 lg:px-8 rounded-r-xl lg:rounded-r-none lg:rounded-b-xl",
+          "absolute left-0 top-1/2 -translate-y-1/2 lg:top-0 lg:translate-y-0 lg:left-1/2 lg:-translate-x-1/2 h-full w-8 lg:h-auto lg:w-full lg:py-0 lg:px-8  flex items-center justify-center",
           isDark ? "text-white bg-white/10" : "bg-black/10",
         ])}
       >
