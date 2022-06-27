@@ -25,15 +25,17 @@ const useColors = () => {
     let currentColors = [...colors];
 
     const newColors = currentColors.map((current) => {
-      if (current.locked) return current;
-
-      const newColor = randomColor();
-      return {
-        id: nanoid(),
-        locked: false,
-        color: newColor,
-        luminance: luminance(newColor),
-      };
+      if (current.locked) {
+        return current;
+      } else {
+        const newColor = randomColor();
+        return {
+          id: nanoid(),
+          locked: false,
+          color: newColor,
+          luminance: luminance(newColor),
+        };
+      }
     });
 
     setColors(newColors);

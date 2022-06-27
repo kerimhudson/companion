@@ -1,6 +1,9 @@
+import { useState } from "react";
 import useColors from "../hooks/useColors";
+import { classNames } from "../utils/classNames";
 
 const MobileMotionPermissions = () => {
+  const [hidden, setHidden] = useState(false);
   const { randomizeColors } = useColors();
   return (
     <div
@@ -12,6 +15,7 @@ const MobileMotionPermissions = () => {
             // @ts-ignore
             .then((permissionState) => {
               if (permissionState === "granted") {
+                setHidden(true);
                 var sensitivity = 30;
 
                 // Position variables
@@ -48,13 +52,16 @@ const MobileMotionPermissions = () => {
                   x2 = x1;
                   y2 = y1;
                   z2 = z1;
-                }, 150);
+                }, 1000);
               }
             })
             .catch((e: any) => console.log(e));
         }
       }}
-      className="bg-yellow-50 py-4 px-4 text-xs font-semibold"
+      className={classNames([
+        "bg-yellow-50 py-4 px-4 text-xs font-semibold lg:hidden",
+        hidden ? "hidden" : "",
+      ])}
     >
       <span>For optimum experience, click here to allow for Device Motion</span>
     </div>
