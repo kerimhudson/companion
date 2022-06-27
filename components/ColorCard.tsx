@@ -42,7 +42,7 @@ const ColorCard = ({ id, color, locked, luminance, index }: Props) => {
   const isDark = luminance <= 0.5;
   return (
     <div
-      className="flex-1 rounded-lg relative bg-gradient-to-t from-black/10 to-transparent"
+      className="flex-1 basis-64 rounded-lg relative bg-gradient-to-t from-black/10 to-transparent"
       ref={setNodeRef}
       style={style}
       {...attributes}
