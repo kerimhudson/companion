@@ -42,13 +42,13 @@ const ColorCard = ({ id, color, locked, luminance, index }: Props) => {
   const isDark = luminance <= 0.5;
   return (
     <div
-      className="flex-1 basis-40 rounded-lg relative bg-gradient-to-t from-black/10 to-transparent"
+      className="flex-1 rounded-lg relative bg-gradient-to-t from-black/10 to-transparent"
       ref={setNodeRef}
       style={style}
       {...attributes}
-      {...listeners}
     >
       <div
+        {...listeners}
         className={classNames([
           "absolute left-1/2 -translate-x-1/2 px-8 rounded-b-xl",
           isDark ? "text-white bg-white/10" : "bg-black/10",
@@ -59,11 +59,11 @@ const ColorCard = ({ id, color, locked, luminance, index }: Props) => {
         </div>
       </div>
 
-      <div className="group absolute top-1/2 lg:top-auto lg:bottom-16 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:translate-y-0 flex flex-col gap-4 justify-center items-center gap-2">
+      <div className="group absolute top-1/2 lg:top-auto lg:bottom-16 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:translate-y-0 flex flex-col justify-center items-center gap-4">
         <button
           onClick={editColor}
           className={classNames([
-            "py-4 px-8  rounded-xl",
+            "py-4 px-8 rounded-xl",
             isDark
               ? "bg-white/10 text-white hover:bg-white/20"
               : "bg-black/10 hover:bg-black/20",

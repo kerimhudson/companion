@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   DndContext,
+  DragOverlay,
   closestCenter,
   KeyboardSensor,
   PointerSensor,
@@ -16,8 +17,12 @@ import {
 import ColorCard from "./ColorCard";
 import useColors from "../hooks/useColors";
 import ColorPickerModal from "./ColorPickerModal";
+import { Color } from "../types/colors";
 
 const ColorContainer = () => {
+  const [activeItem, setActiveItem] = useState<
+    (Color & { index: number }) | null
+  >(null);
   const { colors, initializeColors, setColors } = useColors();
 
   useEffect(() => {
@@ -31,12 +36,31 @@ const ColorContainer = () => {
     })
   );
 
+  const handleDragStart = (event: any) => {
+    const index = colors.findIndex((item) => item.id === event.active.id);
+    setActiveItem({ ...colors[index], index });
+  };
+
+  const handleDragEnd = (event: any) => {
+    const { active, over } = event;
+
+    if (active.id !== over.id) {
+      setColors((items) => {
+        const oldIndex = items.findIndex((i) => i.id === active.id);
+        const newIndex = items.findIndex((i) => i.id === over.id);
+
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    }
+  };
+
   return (
     <>
       <ColorPickerModal />
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
+        onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
       >
         <SortableContext
@@ -52,19 +76,6 @@ const ColorContainer = () => {
       </DndContext>
     </>
   );
-
-  function handleDragEnd(event: any) {
-    const { active, over } = event;
-
-    if (active.id !== over.id) {
-      setColors((items) => {
-        const oldIndex = items.findIndex((i) => i.id === active.id);
-        const newIndex = items.findIndex((i) => i.id === over.id);
-
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
-  }
 };
 
 export default ColorContainer;
