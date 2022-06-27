@@ -10,7 +10,7 @@ const Header = () => {
   const [shareLink, setShareLink] = useState<string>();
 
   useEffect(() => {
-    setShareLink(`${window.location.href}/colors?=${shareColors()}`);
+    setShareLink(`${window.location.origin}/?colors=${shareColors()}`);
   }, [colors]);
 
   const copyShareLinkToClipboard = () => {

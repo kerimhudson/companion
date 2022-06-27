@@ -46,9 +46,9 @@ const ColorCard = ({ id, color, locked, luminance, index }: Props) => {
       ref={setNodeRef}
       style={style}
       {...attributes}
+      {...listeners}
     >
       <div
-        {...listeners}
         className={classNames([
           "absolute left-1/2 -translate-x-1/2 px-8 rounded-b-xl",
           isDark ? "text-white bg-white/10" : "bg-black/10",
