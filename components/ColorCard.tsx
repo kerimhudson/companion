@@ -35,14 +35,14 @@ const ColorCard = ({ id, color, locked, luminance, index }: Props) => {
     transform: CSS.Transform.toString(transform),
     transition,
     backgroundColor: color,
-    zIndeX: isDragging ? 999 : "auto",
+    zIndex: isDragging ? 999 : "auto",
   };
 
   const editColor = () => setEditingColor(index);
   const isDark = luminance <= 0.5;
   return (
     <div
-      className="flex-1 basis-32 rounded-lg relative bg-gradient-to-t from-black/10 to-transparent"
+      className="flex-1 basis-32 rounded-lg relative bg-gradient-to-t from-black/10 to-transparent  w-full h-full"
       ref={setNodeRef}
       style={style}
       {...attributes}

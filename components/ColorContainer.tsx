@@ -74,6 +74,11 @@ const ColorContainer = () => {
             ))}
           </div>
         </SortableContext>
+        <DragOverlay>
+          {activeItem ? (
+            <ColorCard key={activeItem?.color} {...activeItem} />
+          ) : null}
+        </DragOverlay>
       </DndContext>
     </>
   );
